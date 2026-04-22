@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSAI Marketplace — AI Automation Products by Not So Holdings LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #08080a;
+  --bg-card: #111113;
+  --bg-card-hover: #1a1a1d;
+  --border: #27272a;
+  --border-accent: rgba(249,115,22,0.3);
+  --text: #fafafa;
+  --text-dim: #a1a1aa;
+  --text-muted: #52525b;
+  --accent: #f97316;
+  --accent-glow: rgba(249,115,22,0.18);
+  --accent2: #3b82f6;
+  --accent3: #10b981;
+  --gold: #f59e0b;
+  --gradient: linear-gradient(135deg, #f97316, #fb923c, #f59e0b);
+  --gradient2: linear-gradient(135deg, #3b82f6, #6366f1);
+  --gradient3: linear-gradient(135deg, #10b981, #059669);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+.container { max-width: 1160px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(8,8,10,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+.nav-logo span { -webkit-text-fill-color: var(--text-dim); font-weight: 400; font-size: 0.85rem; margin-left: 8px; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--accent); color: #000; font-weight: 700; font-size: 0.85rem;
+  padding: 8px 20px; border-radius: 8px; text-decoration: none; transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  padding: 140px 0 80px;
+  text-align: center;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse at center, rgba(249,115,22,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.25);
+  color: var(--accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+  padding: 6px 14px; border-radius: 99px; margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.hero-badge::before { content: '⚡'; }
+.hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900; letter-spacing: -0.03em;
+  line-height: 1.1; margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: normal;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: 1.1rem; color: var(--text-dim); max-width: 580px; margin: 0 auto 36px;
+  line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gradient); color: #000; font-weight: 700; font-size: 0.95rem;
+  padding: 14px 32px; border-radius: 10px; text-decoration: none;
+  box-shadow: 0 4px 24px var(--accent-glow); transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--accent-glow); }
+.btn-secondary {
+  background: var(--bg-card); border: 1px solid var(--border); color: var(--text);
+  font-weight: 600; font-size: 0.95rem; padding: 14px 32px; border-radius: 10px;
+  text-decoration: none; transition: border-color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--text-muted); }
+.hero-stats {
+  display: flex; gap: 48px; justify-content: center; margin-top: 64px;
+  padding-top: 40px; border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat-num { font-size: 1.8rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ── SECTION ── */
+section { padding: 80px 0; }
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-label {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; color: var(--accent);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+.section-sub { color: var(--text-dim); font-size: 1rem; max-width: 520px; margin: 0 auto; }
+
+/* ── PRODUCT GRID ── */
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+  overflow: hidden;
+}
+.product-card:hover { border-color: rgba(249,115,22,0.3); transform: translateY(-3px); }
+.product-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at top right, rgba(249,115,22,0.04), transparent 60%);
+  pointer-events: none;
+}
+.product-card.featured {
+  border-color: rgba(249,115,22,0.4);
+  background: linear-gradient(135deg, #111113, #0f0e0a);
+}
+.product-card.featured::after {
+  content: 'POPULAR';
+  position: absolute; top: 16px; right: 16px;
+  background: var(--gradient); color: #000;
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em;
+  padding: 4px 10px; border-radius: 99px;
+}
+.product-icon {
+  width: 48px; height: 48px; border-radius: 12px; margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+}
+.product-icon.orange { background: rgba(249,115,22,0.15); }
+.product-icon.blue { background: rgba(59,130,246,0.15); }
+.product-icon.green { background: rgba(16,185,129,0.15); }
+.product-icon.purple { background: rgba(139,92,246,0.15); }
+.product-icon.gold { background: rgba(245,158,11,0.15); }
+
+.product-category {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+.product-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+.product-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 20px; }
+.product-features { list-style: none; margin-bottom: 24px; }
+.product-features li {
+  font-size: 0.82rem; color: var(--text-dim); padding: 4px 0;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.product-features li::before { content: '✓'; color: var(--accent3); font-weight: 700; flex-shrink: 0; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.product-price { font-size: 1.4rem; font-weight: 800; }
+.product-price span { font-size: 0.8rem; font-weight: 400; color: var(--text-muted); }
+.product-price.saas { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.btn-product {
+  background: var(--accent); color: #000; font-weight: 700; font-size: 0.82rem;
+  padding: 9px 20px; border-radius: 8px; text-decoration: none; transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.btn-product:hover { opacity: 0.85; }
+.btn-product.outline {
+  background: transparent; border: 1px solid var(--border); color: var(--text);
+}
+.btn-product.outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── HOW IT WORKS ── */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.step {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px; text-align: center;
+}
+.step-num {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--gradient); color: #000;
+  font-weight: 900; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.step h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+.step p { font-size: 0.83rem; color: var(--text-dim); }
+
+/* ── DEMO TERMINAL ── */
+.terminal-wrap {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; max-width: 780px; margin: 0 auto;
+}
+.terminal-bar {
+  background: #1a1a1d; padding: 12px 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.red { background: #ff5f57; } .dot.yellow { background: #febc2e; } .dot.green { background: #28c840; }
+.terminal-title { font-size: 0.78rem; color: var(--text-muted); margin-left: 8px; font-family: 'JetBrains Mono', monospace; }
+.terminal-body { padding: 24px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.8; }
+.t-prompt { color: var(--accent3); } .t-cmd { color: var(--text); } .t-out { color: var(--text-dim); }
+.t-highlight { color: var(--accent); font-weight: 600; } .t-ok { color: var(--accent3); }
+
+/* ── USE CASES ── */
+.cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.case-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 22px;
+  transition: border-color 0.2s;
+}
+.case-card:hover { border-color: rgba(249,115,22,0.25); }
+.case-icon { font-size: 1.5rem; margin-bottom: 12px; }
+.case-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+.case-card p { font-size: 0.83rem; color: var(--text-dim); }
+
+/* ── SOCIAL PROOF ── */
+.testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.testimonial {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px;
+}
+.stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 12px; }
+.testimonial blockquote { font-size: 0.88rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gradient); display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.85rem; color: #000;
+}
+.author-name { font-size: 0.85rem; font-weight: 600; }
+.author-title { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ── INVESTOR SECTION ── */
+.investor-box {
+  background: linear-gradient(135deg, #0f0e12, #0e0f0a);
+  border: 1px solid rgba(249,115,22,0.3);
+  border-radius: 20px; padding: 56px 48px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.investor-box::before {
+  content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(249,115,22,0.08), transparent 70%);
+}
+.investor-box h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; margin-bottom: 16px; }
+.investor-box p { color: var(--text-dim); font-size: 1rem; max-width: 540px; margin: 0 auto 32px; }
+.metrics-row { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+.metric { text-align: center; }
+.metric-val { font-size: 2rem; font-weight: 900; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.metric-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border); padding: 40px 0;
+  text-align: center;
+}
+.footer-logo { font-size: 1.2rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+footer p { font-size: 0.82rem; color: var(--text-muted); }
+footer a { color: var(--text-dim); text-decoration: none; margin: 0 12px; }
+footer a:hover { color: var(--accent); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .hero { padding: 100px 0 60px; }
+  .hero-stats { gap: 28px; }
+  .investor-box { padding: 36px 24px; }
+  .metrics-row { gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">NSAI<span>by Not So Holdings LLC</span></a>
+    <div class="nav-links">
+      <a href="#products">Products</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#investors">Investors</a>
+    </div>
+    <a class="nav-cta" href="#products">Browse Products →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Now Available — AI Automation Products</div>
+    <h1>Your Business Runs on<br><em>Autopilot</em></h1>
+    <p class="hero-sub">NSAI builds and sells the AI agents, automation stacks, and intelligence tools that let small businesses operate like they have a full tech team — without the overhead.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Shop Products</a>
+      <a href="#demo" class="btn-secondary">See a Live Demo</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always On</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Ready-to-Deploy Products</div></div>
+      <div class="stat"><div class="stat-num">$0</div><div class="stat-label">per hour (AI doesn't sleep)</div></div>
+      <div class="stat"><div class="stat-num">2hrs</div><div class="stat-label">avg. setup time</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Marketplace</div>
+      <h2 class="section-title">AI Products Built to Deploy</h2>
+      <p class="section-sub">Every product is pre-built, tested, and ready to run. No dev team required.</p>
+    </div>
+    <div class="products-grid">
+
+      <!-- NSAI Operator -->
+      <div class="product-card featured">
+        <div class="product-icon orange">🤖</div>
+        <div class="product-category">SaaS Bot</div>
+        <h3>NSAI Operator</h3>
+        <p>Your own autonomous AI agent. Handles Telegram/Discord comms, schedules, client outreach, research, and execution — 24/7.</p>
+        <ul class="product-features">
+          <li>Multi-channel messaging (Telegram, Discord, SMS)</li>
+          <li>Autonomous task execution + memory</li>
+          <li>Web research, email triage, calendar management</li>
+          <li>Self-healing — monitors and fixes itself</li>
+          <li>Hosted on your own device or VPS</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price saas">$297<span>/mo</span></div>
+          <a href="mailto:justin@notsoinc.com?subject=NSAI Operator Inquiry" class="btn-product">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Coin Appraisal Bot -->
+      <div class="product-card">
+        <div class="product-icon gold">🪙</div>
+        <div class="product-category">Revenue Bot</div>
+        <h3>Coin Expert Appraisal App</h3>
+        <p>Upload a coin photo, get a professional AI-graded appraisal using the Sheldon scale with full market analysis. $7.99/appraisal.</p>
+        <ul class="product-features">
+          <li>GPT-4o Vision — professional-grade grading</li>
+          <li>Sheldon scale (1–70) + market value estimate</li>
+          <li>PayPal checkout integrated</li>
+          <li>White-label ready for coin dealers</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$7.99<span>/appraisal</span></div>
+          <a href="http://localhost:3100" class="btn-product">Try It Now</a>
+        </div>
+      </div>
+
+      <!-- Automation Starter Pack -->
+      <div class="product-card">
+        <div class="product-icon blue">⚡</div>
+        <div class="product-category">Digital Download</div>
+        <h3>Automation Starter Pack</h3>
+        <p>n8n workflow templates + Tasker profiles to automate your phone, inbox, social media, and notifications — no code.</p>
+        <ul class="product-features">
+          <li>15+ pre-built n8n workflows</li>
+          <li>Tasker profiles for Android automation</li>
+          <li>Quick-start setup guide (30 min deploy)</li>
+          <li>Discord + Telegram alert templates</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">$7<span> one-time</span></div>
+          <a href="https://notsoinc.gumroad.com" class="btn-product">Buy Now</a>
+        </div>
+      </div>
+
+      <!-- Business Intelligence Bot -->
+      <div class="product-card">
+        <div class="product-icon green">📊</div>
+        <div class="product-category">SaaS Bot</div>
+        <h3>Pre-Market Intel Bot</h3>
+        <p>Daily AI-generated market briefings delivered to your Telegram or Discord before the bell. Macro, sector, and ticker-specific.</p>
+        <ul class="product-features">
+          <li>Runs M–F at 6am (configurable)</li>
+          <li>Macro + sector + watchlist coverage</li>
+          <li>Plain-English summaries — no noise</li>
+          <li>Custom tickers + keywords</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price saas">$49<span>/mo</span></div>
+          <a href="mailto:justin@notsoinc.com?subject=Intel Bot" class="btn-product outline">Inquire</a>
+        </div>
+      </div>
+
+      <!-- ALPR/OSINT System -->
+      <div class="product-card">
+        <div class="product-icon purple">🔍</div>
+        <div class="product-category">Security Tool</div>
+        <h3>ALPR + OSINT Intelligence</h3>
+        <p>License plate reader + open-source intelligence stack. Built for property security, surveillance detection, and fleet tracking.</p>
+        <ul class="product-features">
+          <li>Real-time plate recognition from camera feeds</li>
+          <li>OSINT lookup on detected plates</li>
+          <li>Surveillance pattern detection</li>
+          <li>Alerts via Telegram/Discord</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price">Custom</div>
+          <a href="mailto:justin@notsoinc.com?subject=ALPR OSINT" class="btn-product outline">Get Quote</a>
+        </div>
+      </div>
+
+      <!-- Done-For-You Setup -->
+      <div class="product-card">
+        <div class="product-icon orange">🚀</div>
+        <div class="product-category">Done For You</div>
+        <h3>NSAI Enterprise Setup</h3>
+        <p>We deploy a full custom NSAI stack for your business. AI agent + n8n automations + Discord command center + ongoing support.</p>
+        <ul class="product-features">
+          <li>Custom AI agent built to your workflows</li>
+          <li>n8n automation suite configured</li>
+          <li>Discord or Telegram command center</li>
+          <li>30-day onboarding + training</li>
+          <li>Monthly retainer support available</li>
+        </ul>
+        <div class="product-footer">
+          <div class="product-price saas">From $597<span>/mo</span></div>
+          <a href="mailto:justin@notsoinc.com?subject=Enterprise Setup" class="btn-product">Book a Call</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" style="background: linear-gradient(180deg, transparent, rgba(249,115,22,0.03), transparent);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Process</div>
+      <h2 class="section-title">Up and Running in Hours</h2>
+      <p class="section-sub">No dev team. No 6-month implementation. We deploy fast.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Pick Your Product</h4>
+        <p>Choose from pre-built bots, templates, or a custom build. Tell us what your business does.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>We Configure It</h4>
+        <p>NSAI tailors the automation to your workflows, channels, and data. Setup call included.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Deploy & Watch</h4>
+        <p>Your AI goes live. It handles the work while you focus on growth. Check in from anywhere.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Scale Together</h4>
+        <p>As your business grows, your AI stack grows with it. Add modules, channels, and automations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO TERMINAL -->
+<section id="demo">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Live Demo</div>
+      <h2 class="section-title">This is What NSAI Looks Like</h2>
+      <p class="section-sub">Real output from an active NSAI Operator deployment.</p>
+    </div>
+    <div class="terminal-wrap">
+      <div class="terminal-bar">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <span class="terminal-title">nsai-operator — live session</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">⚡ NSAI</span> <span class="t-cmd">» Checking open loops...</span></div>
+        <div><span class="t-out">  ✓ 3 client follow-ups due today</span></div>
+        <div><span class="t-out">  ✓ Pre-market intel report generated — sent to Discord</span></div>
+        <div><span class="t-out">  ⚠ Coin appraisal app: <span class="t-highlight">2 new orders</span> since last check</span></div>
+        <br>
+        <div><span class="t-prompt">⚡ NSAI</span> <span class="t-cmd">» Running client research: Natural Health Hut</span></div>
+        <div><span class="t-out">  → Scraped imherbalist.com — 847 products, no YouTube presence</span></div>
+        <div><span class="t-out">  → Identified content gap: herb education niche, 12K monthly searches</span></div>
+        <div><span class="t-out">  → <span class="t-ok">Opportunity brief saved to Notion ✓</span></span></div>
+        <br>
+        <div><span class="t-prompt">⚡ NSAI</span> <span class="t-cmd">» Scheduled: Follow-up SMS to Austin Rudd @ 10am</span></div>
+        <div><span class="t-out">  Message: "Hey Austin — wanted to loop back on the automation demo. When's a good time this week?"</span></div>
+        <div><span class="t-out">  → <span class="t-ok">Queued ✓</span></span></div>
+        <br>
+        <div><span class="t-prompt">⚡ NSAI</span> <span class="t-cmd">» Status: All systems operational. 14 tasks completed today.</span></div>
+        <div><span class="t-ok">  █████████████████ RUNNING CLEAN</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="use-cases">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Use Cases</div>
+      <h2 class="section-title">Built for Real Businesses</h2>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card"><div class="case-icon">🏪</div><h4>Retail & E-Commerce</h4><p>Automate order alerts, customer comms, inventory tracking, and review monitoring.</p></div>
+      <div class="case-card"><div class="case-icon">🏗️</div><h4>Contractors & Trades</h4><p>Lead follow-up, scheduling, quote reminders, and job status updates — hands-free.</p></div>
+      <div class="case-card"><div class="case-icon">🎵</div><h4>Music & Entertainment</h4><p>Fan engagement, release alerts, streaming analytics, and booking pipeline management.</p></div>
+      <div class="case-card"><div class="case-icon">🌿</div><h4>Health & Wellness</h4><p>Content scheduling, appointment reminders, supplement/product education automation.</p></div>
+      <div class="case-card"><div class="case-icon">🏠</div><h4>Real Estate & Property</h4><p>Lead nurture, showing reminders, market alert digests, and document follow-up.</p></div>
+      <div class="case-card"><div class="case-icon">⚗️</div><h4>Manufacturing & Production</h4><p>Production tracking, supplier comms, order management, and QC alert systems.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTOR SECTION -->
+<section id="investors">
+  <div class="container">
+    <div class="investor-box">
+      <div class="section-label" style="margin-bottom:16px;">For Investors</div>
+      <h2>AI Infrastructure for the<br>Small Business Economy</h2>
+      <p>Not So Holdings LLC is building the automation layer that lets small businesses compete with enterprises. NSAI is the product — already deployed, already generating revenue.</p>
+      <div class="metrics-row">
+        <div class="metric"><div class="metric-val">$297–$597</div><div class="metric-label">Monthly SaaS Revenue / Client</div></div>
+        <div class="metric"><div class="metric-val">30M+</div><div class="metric-label">US Small Businesses (TAM)</div></div>
+        <div class="metric"><div class="metric-val">&lt;$500</div><div class="metric-label">COGS per Client</div></div>
+        <div class="metric"><div class="metric-val">Live</div><div class="metric-label">Product Already Deployed</div></div>
+      </div>
+      <a href="mailto:justin@notsoinc.com?subject=Investor Inquiry — NSAI" class="btn-primary">Request Investor Deck →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">NSAI ⚡</div>
+    <p style="margin-bottom:16px;">Not So Holdings LLC — Wesley Chapel, FL</p>
+    <div>
+      <a href="mailto:justin@notsoinc.com">justin@notsoinc.com</a>
+      <a href="https://notsoinc.gumroad.com">Gumroad</a>
+      <a href="#products">Products</a>
+    </div>
+    <p style="margin-top:20px;">© 2026 Not So Holdings LLC. All rights reserved. #StayAbove</p>
+  </div>
+</footer>
+
+</body>
+</html>
